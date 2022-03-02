@@ -3,6 +3,7 @@ import "package:provider/provider.dart";
 
 import "./add_place_screen.dart";
 import "../providers/places.dart";
+import "./place_detail_screen.dart";
 
 class PlacesListScreen extends StatelessWidget {
 
@@ -39,8 +40,12 @@ class PlacesListScreen extends StatelessWidget {
                           backgroundImage: FileImage(places.items[i].image),
                         ),
                         title: Text(places.items[i].name),
+                        subtitle: Text(places.items[i].location.address),
                         onTap: () {
-                          // Go to details
+                          Navigator.of(context).pushNamed(
+                            PlaceDetailScreen.routeName,
+                            arguments: places.items[i].id,
+                          );
                         },
                       ),
                     ),
